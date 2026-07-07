@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kea Interiors | Crafting Timeless Living Spaces</title>
+<meta name="description" content="Kea Interiors is a premium interior design and home renovation studio crafting timeless, functional living spaces for discerning homeowners.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Original+Surfer&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          warmwhite: '#FAF6F1',
+          ivory: '#FDFBF6',
+          beige: '#EDE2D3',
+          stone: '#E1D3C1',
+          terracotta: '#C1694A',
+          terracottadark: '#A8523A',
+          charcoal: '#2B2521',
+          muted: '#8C8072',
+          wood: '#8A5C3E',
+        },
+        fontFamily: {
+          heading: ['"Original Surfer"', 'cursive'],
+          body: ['Manrope', 'sans-serif'],
+        },
+        borderRadius: {
+          'md-plus': '14px',
+          'xl-plus': '28px',
+          '2xl-plus': '40px',
+        },
+        boxShadow: {
+          soft: '0 10px 40px -10px rgba(43,37,33,0.12)',
+          softer: '0 4px 24px -6px rgba(43,37,33,0.08)',
+          lifted: '0 24px 60px -15px rgba(43,37,33,0.25)',
+        },
+        transitionTimingFunction: {
+          lux: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --terracotta: #C1694A;
+    --charcoal: #2B2521;
+    --warmwhite: #FAF6F1;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--warmwhite); color: var(--charcoal); font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+  h1, h2, h3, .font-heading { font-family: 'Original Surfer', cursive; letter-spacing: 0.01em; }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  /* Curved section divider */
+  .curve-divider { position: relative; }
+  .curve-divider svg { display: block; width: 100%; height: auto; }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+  .reveal-scale.in-view { opacity: 1; transform: scale(1); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 253, 249, 0.55);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  .glass-dark {
+    background: rgba(43, 37, 33, 0.45);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Nav shrink */
+  #main-nav { transition: all 0.5s cubic-bezier(0.16,1,0.3,1); }
+
+  /* Horizontal services scroll */
+  .services-track { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .services-track::-webkit-scrollbar { display: none; }
+  .services-track { scrollbar-width: none; }
+  .service-card { scroll-snap-align: start; }
+
+  /* Card hover lift */
+  .lift-hover { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .lift-hover:hover { transform: translateY(-8px); }
+
+  /* Image zoom on hover */
+  .img-zoom { overflow: hidden; }
+  .img-zoom img { transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+  .img-zoom:hover img { transform: scale(1.08); }
+
+  /* Before/After slider */
+  .ba-wrapper { position: relative; overflow: hidden; touch-action: none; }
+  .ba-after { position: absolute; inset: 0; overflow: hidden; }
+  .ba-handle {
+    position: absolute; top: 0; bottom: 0; width: 3px; background: #FAF6F1;
+    cursor: ew-resize; transform: translateX(-50%);
+  }
+  .ba-handle::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 48px; height: 48px; border-radius: 999px; background: #FAF6F1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+  .ba-handle .ba-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    z-index: 2; color: #C1694A; font-size: 1.1rem;
+  }
+
+  /* Testimonial carousel */
+  .testimonial-slide { display: none; }
+  .testimonial-slide.active { display: block; animation: fadeInSlide 0.7s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes fadeInSlide { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: translateY(0);} }
+
+  /* Scroll indicator */
+  .scroll-mouse { width: 26px; height: 42px; border: 2px solid rgba(250,246,241,0.7); border-radius: 999px; position: relative; }
+  .scroll-mouse::before {
+    content: ''; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 4px; height: 8px; background: #FAF6F1; border-radius: 999px;
+    animation: scrollDot 1.8s infinite;
+  }
+  @keyframes scrollDot { 0% { opacity: 1; top: 8px; } 70% { opacity: 0; top: 22px; } 100% { opacity: 0; top: 8px; } }
+
+  /* Parallax */
+  .parallax-el { will-change: transform; }
+
+  /* Grain texture overlay */
+  .grain::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.035; z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Custom scrollbar for aesthetics */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #FAF6F1; }
+  ::-webkit-scrollbar-thumb { background: #D9C6B4; border-radius: 999px; }
+
+  .btn-primary {
+    background: var(--terracotta); color: #FAF6F1;
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-primary:hover { background: #A8523A; transform: translateY(-2px); box-shadow: 0 14px 30px -10px rgba(193,105,74,0.5); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(43,37,33,0.25); color: var(--charcoal);
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-outline:hover { background: var(--charcoal); color: #FAF6F1; border-color: var(--charcoal); }
+
+  .badge-terracotta { background: rgba(193,105,74,0.1); color: #A8523A; }
+
+  input, textarea { background: #FFFFFF; }
+
+  .num-counter { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ============ SKIP LINK ============ -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-charcoal focus:text-warmwhite focus:px-4 focus:py-2 focus:rounded-md-plus">Skip to main content</a>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 sm:pt-6">
+  <nav id="main-nav" class="w-full max-w-6xl bg-white/95 backdrop-blur-md rounded-xl-plus shadow-soft px-5 sm:px-8 py-4 flex items-center justify-between" aria-label="Primary">
+    <a href="#hero" class="flex items-center gap-2 shrink-0" aria-label="Kea Interiors home">
+      <span class="font-heading text-xl sm:text-2xl text-charcoal">Kea<span class="text-terracotta"> Interiors</span></span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8 font-medium text-sm text-charcoal/80">
+      <li><a href="#about" class="nav-link hover:text-terracotta transition-colors">About</a></li>
+      <li><a href="#services" class="nav-link hover:text-terracotta transition-colors">Services</a></li>
+      <li><a href="#projects" class="nav-link hover:text-terracotta transition-colors">Projects</a></li>
+      <li><a href="#process" class="nav-link hover:text-terracotta transition-colors">Process</a></li>
+      <li><a href="#testimonials" class="nav-link hover:text-terracotta transition-colors">Testimonials</a></li>
+      <li><a href="#contact" class="nav-link hover:text-terracotta transition-colors">Contact</a></li>
+    </ul>
+
+    <a href="#consultation" class="hidden lg:inline-flex btn-primary rounded-md-plus px-5 py-2.5 text-sm font-semibold">Book a Consultation</a>
+
+    <button id="menu-toggle" class="lg:hidden text-charcoal text-2xl" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <i class="bi bi-list"></i>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden lg:hidden">
+  <div class="absolute inset-0 bg-charcoal/60" id="mobile-menu-backdrop"></div>
+  <div class="absolute top-0 right-0 h-full w-[82%] max-w-sm bg-ivory shadow-lifted p-8 flex flex-col gap-2">
+    <div class="flex justify-between items-center mb-8">
+      <span class="font-heading text-xl text-charcoal">Kea Interiors</span>
+      <button id="menu-close" class="text-2xl text-charcoal" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <a href="#about" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">About</a>
+    <a href="#services" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">Services</a>
+    <a href="#projects" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">Projects</a>
+    <a href="#process" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">Process</a>
+    <a href="#testimonials" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">Testimonials</a>
+    <a href="#contact" class="mobile-link py-4 text-lg font-semibold border-b border-charcoal/10">Contact</a>
+    <a href="#consultation" class="mobile-link mt-6 btn-primary rounded-md-plus px-5 py-4 text-center font-semibold">Book a Consultation</a>
+  </div>
+</div>
+
+<main id="main-content">
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative min-h-[100svh] flex items-end overflow-hidden">
+  <div class="absolute inset-0">
+    <video
+      class="w-full h-full object-cover"
+      autoplay muted loop playsinline
+      poster="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1920&auto=format&fit=crop"
+      aria-hidden="true">
+      <source src="https://cdn.coverr.co/videos/coverr-a-modern-living-room-8562/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-charcoal/10"></div>
+    <div class="absolute inset-0 bg-charcoal/10"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 pb-28 sm:pb-32 pt-40">
+    <p class="reveal text-warmwhite/80 uppercase tracking-[0.25em] text-xs sm:text-sm font-semibold mb-5">Premium Interior Design &amp; Renovation</p>
+    <h1 class="reveal reveal-delay-1 font-heading text-warmwhite text-[2.5rem] leading-[1.1] sm:text-6xl md:text-7xl max-w-3xl">Crafting Timeless<br>Living Spaces</h1>
+    <p class="reveal reveal-delay-2 text-warmwhite/85 text-base sm:text-lg max-w-xl mt-6 leading-relaxed font-light">We transform outdated spaces into beautiful, functional environments that increase comfort, value, and lifestyle &mdash; one considered detail at a time.</p>
+
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 mt-9">
+      <a href="#consultation" class="btn-primary rounded-md-plus px-7 py-4 text-sm font-semibold text-center">Book a Consultation</a>
+      <a href="#projects" class="glass text-warmwhite rounded-md-plus px-7 py-4 text-sm font-semibold text-center hover:bg-white/20 transition-colors">View Projects</a>
+    </div>
+  </div>
+
+  <!-- Floating stat cards -->
+  <div class="reveal reveal-delay-4 hidden md:flex absolute right-8 xl:right-16 bottom-32 z-10 glass rounded-xl-plus px-6 py-5 flex-col shadow-soft">
+    <span class="font-heading text-3xl text-charcoal num-counter" data-count="180">0</span>
+    <span class="text-xs text-charcoal/70 uppercase tracking-wide mt-1">Projects Delivered</span>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3">
+    <div class="scroll-mouse"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="relative bg-warmwhite py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+    <div class="reveal relative">
+      <div class="relative rounded-2xl-plus overflow-hidden shadow-soft img-zoom aspect-[4/5]">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop" alt="Sunlit warm living room with natural wood furniture designed by Kea Interiors" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="absolute -bottom-8 -right-6 sm:-right-10 w-40 sm:w-56 rounded-xl-plus overflow-hidden shadow-lifted border-4 border-warmwhite aspect-square">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=800&auto=format&fit=crop" alt="Close up of handcrafted wood cabinetry detail" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="absolute -top-6 -left-6 glass rounded-xl-plus px-5 py-4 shadow-soft hidden sm:block">
+        <span class="font-heading text-2xl text-terracotta num-counter" data-count="12">0</span>
+        <span class="block text-xs text-charcoal/70 uppercase tracking-wide">Years of Craft</span>
+      </div>
+    </div>
+
+    <div>
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">About Kea Interiors</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight mb-6">Spaces people love coming back to</h2>
+      <p class="reveal text-charcoal/75 leading-relaxed mb-6 font-light">Kea Interiors was founded on a simple belief &mdash; a home should feel as good as it looks. We pair architectural precision with warm, livable materiality, working closely with luxury homeowners and growing families to design spaces that hold up to everyday life and still feel considered in every corner.</p>
+
+      <div class="reveal grid sm:grid-cols-2 gap-5 mb-8">
+        <div class="flex gap-3">
+          <i class="bi bi-compass text-terracotta text-xl mt-0.5"></i>
+          <div>
+            <h3 class="font-semibold text-sm mb-1">Our Mission</h3>
+            <p class="text-sm text-charcoal/65 leading-relaxed font-light">Design environments that elevate how our clients live, work, and gather.</p>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <i class="bi bi-eye text-terracotta text-xl mt-0.5"></i>
+          <div>
+            <h3 class="font-semibold text-sm mb-1">Our Vision</h3>
+            <p class="text-sm text-charcoal/65 leading-relaxed font-light">To be the most trusted name in considered, livable luxury design.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal grid grid-cols-3 gap-4 sm:gap-6 border-t border-charcoal/10 pt-7">
+        <div>
+          <span class="font-heading text-2xl sm:text-3xl text-charcoal num-counter" data-count="180">0</span><span class="font-heading text-2xl sm:text-3xl text-terracotta">+</span>
+          <p class="text-xs text-charcoal/60 uppercase tracking-wide mt-1">Projects</p>
+        </div>
+        <div>
+          <span class="font-heading text-2xl sm:text-3xl text-charcoal num-counter" data-count="98">0</span><span class="font-heading text-2xl sm:text-3xl text-terracotta">%</span>
+          <p class="text-xs text-charcoal/60 uppercase tracking-wide mt-1">Client Satisfaction</p>
+        </div>
+        <div>
+          <span class="font-heading text-2xl sm:text-3xl text-charcoal num-counter" data-count="12">0</span>
+          <p class="text-xs text-charcoal/60 uppercase tracking-wide mt-1">Years Experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="curve-divider absolute -bottom-1 left-0 right-0 text-beige">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="currentColor" d="M0,60 C360,110 1080,10 1440,60 L1440,100 L0,100 Z"></path></svg>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="relative bg-beige pt-24 sm:pt-32 pb-28 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">What We Do</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight max-w-lg">Services built for how you actually live</h2>
+    </div>
+    <p class="reveal text-charcoal/60 text-sm max-w-xs font-light">Swipe or scroll to explore each service in detail.</p>
+  </div>
+
+  <div class="services-track flex gap-6 overflow-x-auto px-6 sm:px-8 pb-4" role="list" aria-label="Our services">
+    <!-- card 1 -->
+    <article class="service-card reveal shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=900&auto=format&fit=crop" alt="Elegant living room interior design" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-palette2 text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Interior Design</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Full-scope styling and spatial design tailored to your lifestyle and taste.</p>
+      </div>
+    </article>
+    <!-- card 2 -->
+    <article class="service-card reveal reveal-delay-1 shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?q=80&w=900&auto=format&fit=crop" alt="Architectural floor plan and space planning sketches" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-rulers text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Space Planning</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Smart layouts that maximize flow, light, and function in every room.</p>
+      </div>
+    </article>
+    <!-- card 3 -->
+    <article class="service-card reveal reveal-delay-2 shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900&auto=format&fit=crop" alt="Modern office interior design" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-building text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Office Interiors</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Considered workspaces that reflect your brand and support focus.</p>
+      </div>
+    </article>
+    <!-- card 4 -->
+    <article class="service-card reveal reveal-delay-3 shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=900&auto=format&fit=crop" alt="Custom wood cabinetry craftsmanship" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-bricks text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Custom Cabinetry</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Handmade storage and millwork built precisely to your space.</p>
+      </div>
+    </article>
+    <!-- card 5 -->
+    <article class="service-card reveal reveal-delay-4 shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=900&auto=format&fit=crop" alt="Custom furniture design in a modern home" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-lamp text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Furniture Design</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Bespoke pieces designed to fit your space, function, and story.</p>
+      </div>
+    </article>
+    <!-- card 6 -->
+    <article class="service-card reveal shrink-0 w-[280px] sm:w-[340px] bg-ivory rounded-2xl-plus shadow-softer lift-hover overflow-hidden" role="listitem">
+      <div class="img-zoom h-56 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=900&auto=format&fit=crop" alt="Smart home control panel in a luxury interior" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6">
+        <i class="bi bi-cpu text-terracotta text-2xl mb-3"></i>
+        <h3 class="font-heading text-xl mb-2">Smart Home Integration</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Seamless automation for lighting, climate, and security.</p>
+      </div>
+    </article>
+    <div class="shrink-0 w-2" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============ FEATURED PROJECTS ============ -->
+<section id="projects" class="relative bg-warmwhite py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8">
+    <div class="mb-16 sm:mb-20 max-w-xl">
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Featured Projects</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight">Recent work, real homes</h2>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24 sm:mb-32">
+      <div class="reveal img-zoom rounded-2xl-plus overflow-hidden shadow-soft aspect-[4/3] order-1">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop" alt="Featured project: The Ridgeway Residence living room" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="reveal reveal-delay-1 order-2">
+        <span class="badge-terracotta inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4">Full Home Renovation</span>
+        <h3 class="font-heading text-2xl sm:text-3xl mb-3">The Ridgeway Residence</h3>
+        <p class="text-charcoal/65 font-light leading-relaxed mb-5">A dated 1990s family home reimagined with an organic modern palette, custom millwork, and an open-plan living core built for entertaining.</p>
+        <a href="#contact" class="inline-flex items-center gap-2 text-terracotta font-semibold text-sm group">View case study <i class="bi bi-arrow-right transition-transform group-hover:translate-x-1"></i></a>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24 sm:mb-32">
+      <div class="reveal reveal-delay-1 order-2 lg:order-1">
+        <span class="badge-terracotta inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4">Office Interior</span>
+        <h3 class="font-heading text-2xl sm:text-3xl mb-3">Solmar Studio Offices</h3>
+        <p class="text-charcoal/65 font-light leading-relaxed mb-5">A creative agency HQ balancing warm materials and quiet acoustics, with custom cabinetry and adaptable meeting spaces.</p>
+        <a href="#contact" class="inline-flex items-center gap-2 text-terracotta font-semibold text-sm group">View case study <i class="bi bi-arrow-right transition-transform group-hover:translate-x-1"></i></a>
+      </div>
+      <div class="reveal img-zoom rounded-2xl-plus overflow-hidden shadow-soft aspect-[4/3] order-1 lg:order-2">
+        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop" alt="Featured project: Solmar Studio office interior" class="w-full h-full object-cover" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="reveal img-zoom rounded-2xl-plus overflow-hidden shadow-soft aspect-[4/3] order-1">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Featured project: Aurelia Penthouse kitchen and dining" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="reveal reveal-delay-1 order-2">
+        <span class="badge-terracotta inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4">Kitchen &amp; Dining</span>
+        <h3 class="font-heading text-2xl sm:text-3xl mb-3">Aurelia Penthouse</h3>
+        <p class="text-charcoal/65 font-light leading-relaxed mb-5">Marble waterfall island, natural oak millwork, and a warm-toned lighting plan designed for both daily life and hosting.</p>
+        <a href="#contact" class="inline-flex items-center gap-2 text-terracotta font-semibold text-sm group">View case study <i class="bi bi-arrow-right transition-transform group-hover:translate-x-1"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="relative bg-charcoal text-warmwhite py-24 sm:py-32 grain">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 relative z-10">
+    <div class="mb-16 sm:mb-20 max-w-xl">
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Our Process</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight">From first conversation to final reveal</h2>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute left-[27px] top-4 bottom-4 w-px bg-warmwhite/15" aria-hidden="true"></div>
+
+      <div class="reveal flex gap-6 sm:gap-8 mb-14 sm:mb-16">
+        <div class="shrink-0 w-14 h-14 rounded-full bg-terracotta flex items-center justify-center font-heading text-lg">01</div>
+        <div class="pt-2">
+          <h3 class="font-heading text-xl sm:text-2xl mb-2">Discovery Consultation</h3>
+          <p class="text-warmwhite/65 font-light leading-relaxed max-w-lg">We learn how you live, what frustrates you about your current space, and where you want to end up &mdash; in person or virtually.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1 flex gap-6 sm:gap-8 mb-14 sm:mb-16">
+        <div class="shrink-0 w-14 h-14 rounded-full bg-terracotta flex items-center justify-center font-heading text-lg">02</div>
+        <div class="pt-2">
+          <h3 class="font-heading text-xl sm:text-2xl mb-2">Concept &amp; Space Plan</h3>
+          <p class="text-warmwhite/65 font-light leading-relaxed max-w-lg">Moodboards, material palettes, and layout options tailored to your brief and budget, refined together until it feels right.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 flex gap-6 sm:gap-8 mb-14 sm:mb-16">
+        <div class="shrink-0 w-14 h-14 rounded-full bg-terracotta flex items-center justify-center font-heading text-lg">03</div>
+        <div class="pt-2">
+          <h3 class="font-heading text-xl sm:text-2xl mb-2">Sourcing &amp; Craft</h3>
+          <p class="text-warmwhite/65 font-light leading-relaxed max-w-lg">We source premium materials and coordinate trusted craftspeople for cabinetry, furniture, and finishes.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 flex gap-6 sm:gap-8">
+        <div class="shrink-0 w-14 h-14 rounded-full bg-terracotta flex items-center justify-center font-heading text-lg">04</div>
+        <div class="pt-2">
+          <h3 class="font-heading text-xl sm:text-2xl mb-2">Install &amp; Reveal</h3>
+          <p class="text-warmwhite/65 font-light leading-relaxed max-w-lg">Full installation, styling, and a final walkthrough &mdash; handing you a space that's ready to live in from day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE & AFTER ============ -->
+<section class="relative bg-warmwhite py-24 sm:py-32">
+  <div class="max-w-5xl mx-auto px-6 sm:px-8">
+    <div class="mb-12 sm:mb-16 max-w-xl">
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Transformations</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight">See the difference, side by side</h2>
+    </div>
+
+    <div class="reveal ba-wrapper rounded-2xl-plus shadow-soft aspect-[16/10] select-none" id="ba-slider">
+      <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1400&auto=format&fit=crop" alt="Living room before renovation" class="absolute inset-0 w-full h-full object-cover" draggable="false">
+      <div class="ba-after" id="ba-after-clip" style="width:50%;">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400&auto=format&fit=crop" alt="Same living room after Kea Interiors renovation" class="w-full h-full object-cover" style="width:200%; max-width:none;" draggable="false" id="ba-after-img">
+      </div>
+      <div class="ba-handle" id="ba-handle" style="left:50%;"><span class="ba-icon"><i class="bi bi-arrows"></i></span></div>
+      <span class="absolute top-4 left-4 text-xs font-semibold uppercase tracking-wide bg-charcoal/60 text-warmwhite px-3 py-1 rounded-full pointer-events-none">Before</span>
+      <span class="absolute top-4 right-4 text-xs font-semibold uppercase tracking-wide bg-terracotta text-warmwhite px-3 py-1 rounded-full pointer-events-none">After</span>
+    </div>
+    <p class="text-center text-sm text-charcoal/50 mt-4 font-light">Drag the slider to reveal the transformation</p>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="why-us" class="relative bg-beige py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8">
+    <div class="mb-14 sm:mb-16 max-w-xl">
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Why Choose Us</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight">Detail is where trust is built</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-gem text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Craftsmanship</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Every joint, seam, and finish is held to a standard that shows in daily use, not just in photos.</p>
+      </div>
+      <div class="reveal reveal-delay-1 bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-search text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Attention to Detail</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">From hardware finishes to sightlines, nothing is left to chance or filled in with a default choice.</p>
+      </div>
+      <div class="reveal reveal-delay-2 bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-chat-square-text text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Transparent Communication</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Clear timelines, honest budgets, and regular updates so you always know where your project stands.</p>
+      </div>
+      <div class="reveal bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-cpu text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Smart Home Expertise</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Automation and integration handled by people who understand both design and systems.</p>
+      </div>
+      <div class="reveal reveal-delay-1 bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-tree text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Premium Materials</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">Sourced wood, stone, and textiles chosen to age well and feel considered for years to come.</p>
+      </div>
+      <div class="reveal reveal-delay-2 bg-ivory rounded-2xl-plus p-7 shadow-softer lift-hover">
+        <i class="bi bi-people text-terracotta text-2xl mb-4"></i>
+        <h3 class="font-heading text-lg mb-2">Client First Approach</h3>
+        <p class="text-sm text-charcoal/65 font-light leading-relaxed">The final space is built around how you actually live, not around what photographs best.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section id="materials" class="relative bg-warmwhite py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8">
+    <div class="mb-14 sm:mb-16 max-w-xl">
+      <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Materials &amp; Craftsmanship</p>
+      <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight">Materials chosen to last a lifetime</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+        <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?q=80&w=800&auto=format&fit=crop" alt="Natural wood grain material close up" class="w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+          <span class="text-warmwhite font-heading text-lg">Wood</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2 relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+    <img src="https://images.unsplash.com/photo-1620641622206-2d0f0e93b7f3?q=80&w=800&auto=format&fit=crop" alt="Natural stone material close up" class="w-full h-full object-cover" loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+        <span class="text-warmwhite font-heading text-lg">Stone</span>
+    </div>
+</div>
+      <div class="reveal reveal-delay-2 relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=800&auto=format&fit=crop" alt="Marble material close up" class="w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+          <span class="text-warmwhite font-heading text-lg">Marble</span>
+        </div>
+      </div>
+      <div class="reveal relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+        <img src="https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?q=80&w=800&auto=format&fit=crop" alt="Glass material texture close up" class="w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+          <span class="text-warmwhite font-heading text-lg">Glass</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1 relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=800&auto=format&fit=crop" alt="Woven fabric texture close up" class="w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+          <span class="text-warmwhite font-heading text-lg">Fabric</span>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2 relative rounded-2xl-plus overflow-hidden aspect-square img-zoom shadow-softer">
+        <img src="https://images.unsplash.com/photo-1516575150278-77136aed6920?q=80&w=800&auto=format&fit=crop" alt="Brushed metal material close up" class="w-full h-full object-cover" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 to-transparent flex items-end p-5">
+          <span class="text-warmwhite font-heading text-lg">Metal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="curve-divider absolute -bottom-1 left-0 right-0 text-beige">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none"><path fill="currentColor" d="M0,40 C400,100 1040,0 1440,50 L1440,100 L0,100 Z"></path></svg>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials" class="relative bg-beige py-24 sm:py-32">
+  <div class="max-w-3xl mx-auto px-6 sm:px-8 text-center">
+    <p class="reveal text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Testimonials</p>
+    <h2 class="reveal font-heading text-3xl sm:text-5xl leading-tight mb-14">What our clients say</h2>
+
+    <div class="relative bg-ivory rounded-2xl-plus shadow-soft px-7 sm:px-14 py-12 min-h-[280px] flex items-center justify-center" id="testimonial-container">
+      <i class="bi bi-quote text-terracotta text-6xl absolute top-6 left-6 opacity-30"></i>
+
+      <div class="testimonial-slide active">
+        <p class="text-lg sm:text-xl font-light leading-relaxed text-charcoal/85 mb-8">"Kea Interiors turned a house we'd stopped enjoying into the reason we look forward to coming home. They understood exactly how we live before drawing a single plan."</p>
+        <div class="flex items-center justify-center gap-3">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" alt="Portrait of client Amara Chukwu" class="w-12 h-12 rounded-full object-cover">
+          <div class="text-left">
+            <p class="font-semibold text-sm">Amara Chukwu</p>
+            <p class="text-xs text-charcoal/55">Ridgeway Residence</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <p class="text-lg sm:text-xl font-light leading-relaxed text-charcoal/85 mb-8">"The level of communication was rare. Every material choice was explained, every timeline held. Our office finally feels like it belongs to us."</p>
+        <div class="flex items-center justify-center gap-3">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" alt="Portrait of client David Osei" class="w-12 h-12 rounded-full object-cover">
+          <div class="text-left">
+            <p class="font-semibold text-sm">David Osei</p>
+            <p class="text-xs text-charcoal/55">Solmar Studio</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <p class="text-lg sm:text-xl font-light leading-relaxed text-charcoal/85 mb-8">"We interviewed four studios. Kea was the only one that asked about our routines before showing us a moodboard. That difference shows in the final result."</p>
+        <div class="flex items-center justify-center gap-3">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100&auto=format&fit=crop" alt="Portrait of client Ngozi Adeyemi" class="w-12 h-12 rounded-full object-cover">
+          <div class="text-left">
+            <p class="font-semibold text-sm">Ngozi Adeyemi</p>
+            <p class="text-xs text-charcoal/55">Aurelia Penthouse</p>
+          </div>
+        </div>
+      </div>
+
+      <button id="testi-prev" class="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-warmwhite shadow-softer items-center justify-center hover:bg-terracotta hover:text-warmwhite transition-colors" aria-label="Previous testimonial"><i class="bi bi-chevron-left"></i></button>
+      <button id="testi-next" class="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-warmwhite shadow-softer items-center justify-center hover:bg-terracotta hover:text-warmwhite transition-colors" aria-label="Next testimonial"><i class="bi bi-chevron-right"></i></button>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-6" id="testi-dots">
+      <button class="testi-dot w-2.5 h-2.5 rounded-full bg-terracotta transition-colors" data-index="0" aria-label="Show testimonial 1"></button>
+      <button class="testi-dot w-2.5 h-2.5 rounded-full bg-charcoal/20 transition-colors" data-index="1" aria-label="Show testimonial 2"></button>
+      <button class="testi-dot w-2.5 h-2.5 rounded-full bg-charcoal/20 transition-colors" data-index="2" aria-label="Show testimonial 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONSULTATION CTA ============ -->
+<section id="consultation" class="relative py-28 sm:py-36 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1920&auto=format&fit=crop" alt="Warm luxury living room interior" class="w-full h-full object-cover parallax-el" id="cta-bg">
+    <div class="absolute inset-0 bg-charcoal/70"></div>
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto px-6 sm:px-8 text-center">
+    <h2 class="reveal font-heading text-warmwhite text-3xl sm:text-5xl leading-tight mb-6">Picture your home, finally finished</h2>
+    <p class="reveal reveal-delay-1 text-warmwhite/80 font-light max-w-xl mx-auto mb-10">Tell us a little about your space and goals. We'll follow up within one business day to schedule your consultation.</p>
+
+    <form class="reveal reveal-delay-2 max-w-md mx-auto glass rounded-2xl-plus p-6 sm:p-8 flex flex-col gap-4 text-left" aria-label="Book a consultation">
+      <div>
+        <label for="cta-name" class="sr-only">Full name</label>
+        <input id="cta-name" name="name" type="text" placeholder="Full name" required class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none">
+      </div>
+      <div>
+        <label for="cta-email" class="sr-only">Email address</label>
+        <input id="cta-email" name="email" type="email" placeholder="Email address" required class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none">
+      </div>
+      <button type="submit" class="btn-primary rounded-md-plus px-6 py-3.5 text-sm font-semibold mt-2">Book a Consultation</button>
+      <p class="text-xs text-warmwhite/70 text-center mt-1">No obligation. We'll never share your details.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="relative bg-warmwhite py-24 sm:py-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+
+    <div class="reveal relative rounded-2xl-plus overflow-hidden shadow-soft min-h-[320px]">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop" alt="Kea Interiors design studio office" class="w-full h-full object-cover absolute inset-0" loading="lazy">
+      <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent"></div>
+      <div class="absolute bottom-6 left-6 right-6 text-warmwhite">
+        <p class="font-heading text-xl mb-1">Visit the Studio</p>
+        <p class="text-sm text-warmwhite/80 font-light">14 Marbrook Lane, Lekki Phase 1, Lagos</p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <p class="text-terracotta uppercase tracking-[0.2em] text-xs sm:text-sm font-semibold mb-4">Contact</p>
+      <h2 class="font-heading text-3xl sm:text-4xl leading-tight mb-6">Let's talk about your space</h2>
+
+      <form class="grid sm:grid-cols-2 gap-4 mb-8" aria-label="Contact form">
+        <div class="sm:col-span-1">
+          <label for="contact-name" class="sr-only">Name</label>
+          <input id="contact-name" type="text" placeholder="Name" required class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none">
+        </div>
+        <div class="sm:col-span-1">
+          <label for="contact-phone" class="sr-only">Phone</label>
+          <input id="contact-phone" type="tel" placeholder="Phone" class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none">
+        </div>
+        <div class="sm:col-span-2">
+          <label for="contact-email" class="sr-only">Email</label>
+          <input id="contact-email" type="email" placeholder="Email" required class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none">
+        </div>
+        <div class="sm:col-span-2">
+          <label for="contact-message" class="sr-only">Message</label>
+          <textarea id="contact-message" rows="4" placeholder="Tell us about your project" class="w-full rounded-md-plus px-4 py-3 text-sm border border-charcoal/10 focus:border-terracotta outline-none resize-none"></textarea>
+        </div>
+        <button type="submit" class="sm:col-span-2 btn-primary rounded-md-plus px-6 py-3.5 text-sm font-semibold">Send Message</button>
+      </form>
+
+      <div class="flex flex-wrap gap-6 text-sm text-charcoal/70 mb-6">
+        <a href="tel:+2348000000000" class="flex items-center gap-2 hover:text-terracotta transition-colors"><i class="bi bi-telephone"></i> +234 800 000 0000</a>
+        <a href="mailto:hello@keainteriors.com" class="flex items-center gap-2 hover:text-terracotta transition-colors"><i class="bi bi-envelope"></i> hello@keainteriors.com</a>
+      </div>
+
+      <div class="rounded-xl-plus overflow-hidden shadow-softer aspect-[16/7] bg-stone flex items-center justify-center text-charcoal/40 text-sm mb-6" role="img" aria-label="Map placeholder showing studio location">
+        <i class="bi bi-geo-alt text-2xl mr-2"></i> Map placeholder
+      </div>
+
+      <a href="https://wa.me/2348000000000" class="inline-flex items-center gap-2 bg-[#25D366] text-white rounded-md-plus px-5 py-3 text-sm font-semibold hover:brightness-95 transition">
+        <i class="bi bi-whatsapp text-lg"></i> Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-charcoal text-warmwhite pt-16 pb-8">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <span class="font-heading text-xl">Kea<span class="text-terracotta"> Interiors</span></span>
+        <p class="text-sm text-warmwhite/60 font-light mt-4 leading-relaxed">Crafting timeless living spaces for luxury homeowners and growing families.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wide mb-4 text-warmwhite/80">Quick Links</h3>
+        <ul class="space-y-2 text-sm text-warmwhite/60 font-light">
+          <li><a href="#about" class="hover:text-terracotta transition-colors">About</a></li>
+          <li><a href="#services" class="hover:text-terracotta transition-colors">Services</a></li>
+          <li><a href="#projects" class="hover:text-terracotta transition-colors">Projects</a></li>
+          <li><a href="#contact" class="hover:text-terracotta transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wide mb-4 text-warmwhite/80">Services</h3>
+        <ul class="space-y-2 text-sm text-warmwhite/60 font-light">
+          <li>Interior Design</li>
+          <li>Space Planning</li>
+          <li>Custom Cabinetry</li>
+          <li>Smart Home Integration</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wide mb-4 text-warmwhite/80">Follow</h3>
+        <div class="flex gap-3">
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors"><i class="bi bi-instagram"></i></a>
+          <a href="#" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors"><i class="bi bi-pinterest"></i></a>
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-xs text-warmwhite/45 flex flex-col sm:flex-row justify-between gap-2">
+      <p>&copy; 2026 Kea Interiors. All rights reserved.</p>
+      <p>Designed with care for timeless living.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Mobile menu ---------- */
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  function openMenu() {
+    mobileMenu.classList.remove('hidden');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    mobileMenu.classList.add('hidden');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  menuToggle && menuToggle.addEventListener('click', openMenu);
+  menuClose && menuClose.addEventListener('click', closeMenu);
+  mobileBackdrop && mobileBackdrop.addEventListener('click', closeMenu);
+  mobileLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+  /* ---------- Nav shrink on scroll ---------- */
+  const nav = document.getElementById('main-nav');
+  function handleNavScroll() {
+    if (window.scrollY > 40) {
+      nav.classList.add('py-2.5', 'shadow-lifted');
+      nav.classList.remove('py-4');
+    } else {
+      nav.classList.remove('py-2.5', 'shadow-lifted');
+      nav.classList.add('py-4');
+    }
+  }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+
+  /* ---------- Reveal on scroll (IntersectionObserver) ---------- */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+  const revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+  /* ---------- Number counters ---------- */
+  const counters = document.querySelectorAll('.num-counter');
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    const duration = 1600;
+    const startTime = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  const counterObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function (el) { counterObserver.observe(el); });
+
+  /* ---------- Before / After slider ---------- */
+  const baWrapper = document.getElementById('ba-slider');
+  const baAfterClip = document.getElementById('ba-after-clip');
+  const baHandle = document.getElementById('ba-handle');
+  const baAfterImg = document.getElementById('ba-after-img');
+  let baDragging = false;
+
+  function setBaPosition(clientX) {
+    const rect = baWrapper.getBoundingClientRect();
+    let pct = ((clientX - rect.left) / rect.width) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    baAfterClip.style.width = pct + '%';
+    baHandle.style.left = pct + '%';
+  }
+
+  if (baWrapper) {
+    baWrapper.addEventListener('mousedown', function (e) { baDragging = true; setBaPosition(e.clientX); });
+    window.addEventListener('mousemove', function (e) { if (baDragging) setBaPosition(e.clientX); });
+    window.addEventListener('mouseup', function () { baDragging = false; });
+
+    baWrapper.addEventListener('touchstart', function (e) { baDragging = true; setBaPosition(e.touches[0].clientX); }, { passive: true });
+    baWrapper.addEventListener('touchmove', function (e) { if (baDragging) setBaPosition(e.touches[0].clientX); }, { passive: true });
+    baWrapper.addEventListener('touchend', function () { baDragging = false; });
+  }
+
+  /* ---------- Testimonial carousel ---------- */
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots = document.querySelectorAll('.testi-dot');
+  const prevBtn = document.getElementById('testi-prev');
+  const nextBtn = document.getElementById('testi-next');
+  let currentSlide = 0;
+  let testiInterval;
+
+  function showSlide(index) {
+    slides.forEach(function (s, i) { s.classList.toggle('active', i === index); });
+    dots.forEach(function (d, i) {
+      d.classList.toggle('bg-terracotta', i === index);
+      d.classList.toggle('bg-charcoal/20', i !== index);
+    });
+    currentSlide = index;
+  }
+  function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+  function prevSlide() { showSlide((currentSlide - 1 + slides.length) % slides.length); }
+
+  function startAutoplay() {
+    testiInterval = setInterval(nextSlide, 6000);
+  }
+  function resetAutoplay() {
+    clearInterval(testiInterval);
+    startAutoplay();
+  }
+
+  nextBtn && nextBtn.addEventListener('click', function () { nextSlide(); resetAutoplay(); });
+  prevBtn && prevBtn.addEventListener('click', function () { prevSlide(); resetAutoplay(); });
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      showSlide(parseInt(dot.getAttribute('data-index'), 10));
+      resetAutoplay();
+    });
+  });
+  if (slides.length) startAutoplay();
+
+  /* ---------- Parallax on CTA background ---------- */
+  const ctaBg = document.getElementById('cta-bg');
+  if (ctaBg) {
+    window.addEventListener('scroll', function () {
+      const rect = ctaBg.parentElement.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        const offset = rect.top * 0.15;
+        ctaBg.style.transform = 'translateY(' + offset + 'px) scale(1.1)';
+      }
+    }, { passive: true });
+  }
+
+  /* ---------- Form submission (prevent default, no backend wired) ---------- */
+  document.querySelectorAll('form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Message Sent';
+        setTimeout(function () { btn.textContent = originalText; }, 2500);
+      }
+      form.reset();
+    });
+  });
+
+})();
+</script>
+</body>
+</html>
